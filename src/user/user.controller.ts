@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, Post, Put, Delete } from '@nestjs/common';
 import { UserService } from './user.service';
 import { IUser } from './interfaces/user.interface';
-import { get } from 'mongoose';
+
 
 @Controller('user')
 export class UserController {
