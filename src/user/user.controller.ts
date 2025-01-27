@@ -1,6 +1,9 @@
-import { Body, Controller, Get, Param, Post, Put, Delete } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Delete, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 import { IUser } from './interfaces/user.interface';
+import { JwtAuthGuard } from 'src/auth/jwt.auth.guard';
+
+
 
 
 @Controller('user')
@@ -12,6 +15,7 @@ export class UserController {
         return await this.userService.createUser(user);
     }
 
+    @UseGuards( JwtAuthGuard )
     @Get(':id')
     async getUserById(@Param('id') id: string): Promise<IUser> {
         return await this.userService.getUserByEmail(id);

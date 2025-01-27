@@ -6,6 +6,10 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 
+import { AuthService } from './auth/auth.service';
+import { JwtStrategy } from './auth/jwt.strategy';
+
+
 @Module({
   imports: [HeroesModule,
         MongooseModule.forRoot('mongodb://root:example@localhost:27017/heroes?authSource=admin'),
@@ -14,6 +18,6 @@ import { AuthModule } from './auth/auth.module';
 
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AuthService, JwtStrategy ],
 })
 export class AppModule {}
